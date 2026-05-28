@@ -22,26 +22,24 @@ export function WizardShell({ currentStep, children }: Props) {
   const pct = Math.round((currentStep / TOTAL_STEPS) * 100);
 
   return (
-    <div className="min-h-screen bg-pink-50 flex flex-col items-center justify-center px-6 py-10">
-      <div className="w-full max-w-xs mb-8">
-        <p className="text-xs text-pink-400 font-semibold text-center mb-2 tracking-wide uppercase">
-          Step {currentStep} of {TOTAL_STEPS}
-        </p>
-        <div className="h-2 bg-pink-100 rounded-full overflow-hidden">
-          <div
-            className="h-2 bg-pink-400 rounded-full transition-all duration-500"
-            style={{ width: `${pct}%` }}
-          />
+    <div className="min-h-screen flex flex-col items-center justify-center px-6 py-10">
+      <div className="w-full max-w-xs mb-5">
+        <div className="bg-white rounded-full shadow-md px-5 py-2">
+          <p className="text-xs text-pink-500 font-bold text-center mb-1.5 tracking-wide uppercase">
+            Step {currentStep} of {TOTAL_STEPS}
+          </p>
+          <div className="h-2 bg-pink-100 rounded-full overflow-hidden">
+            <div
+              className="h-2 bg-pink-500 rounded-full transition-all duration-500"
+              style={{ width: `${pct}%` }}
+            />
+          </div>
         </div>
       </div>
 
       {showTransition ? (
-        <div className="flex flex-col items-center">
-          <img
-            src={askConfig.transitionGif}
-            alt=""
-            className="w-24 h-24 object-cover rounded-xl opacity-80"
-          />
+        <div className="w-full max-w-xs flex flex-col items-center">
+          <img src={askConfig.transitionGif} alt="" className="w-full rounded-2xl shadow-xl opacity-95" />
         </div>
       ) : (
         <div key={currentStep} className="w-full max-w-xs ask-fade-in">

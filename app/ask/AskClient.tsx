@@ -27,11 +27,16 @@ export function AskClient() {
 
   function handleYes() {
     setStep("yes-reaction");
-    setTimeout(() => setStep("date"), 1500);
   }
 
   if (step === "landing" || step === "yes-reaction") {
-    return <LandingScreen showReaction={step === "yes-reaction"} onYes={handleYes} />;
+    return (
+      <LandingScreen
+        showReaction={step === "yes-reaction"}
+        onYes={handleYes}
+        onNext={() => setStep("date")}
+      />
+    );
   }
 
   if (step === "confirmation") {

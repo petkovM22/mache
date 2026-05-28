@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { askConfig } from "../ask-config";
+import { popHeading, popSub } from "../ask-styles";
 
 const DAY_LABELS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
@@ -61,10 +62,10 @@ export function DatePickerStep({ onNext }: Props) {
   return (
     <div className="flex flex-col items-center">
       <p className="text-4xl mb-2">📅</p>
-      <h2 className="text-2xl font-bold text-gray-800 mb-1">{askConfig.steps.date.heading}</h2>
-      <p className="text-pink-400 text-sm mb-6">{askConfig.steps.date.subheading}</p>
+      <h2 className="text-2xl mb-1" style={popHeading}>{askConfig.steps.date.heading}</h2>
+      <p className="text-sm mb-5" style={popSub}>{askConfig.steps.date.subheading}</p>
 
-      <div className="bg-white rounded-2xl shadow-sm p-4 w-full">
+      <div className="bg-pink-50 border border-pink-100 rounded-2xl p-4 w-full">
         <div className="flex items-center justify-between mb-3">
           <button onClick={goToPrevMonth} className="text-pink-400 font-bold text-xl px-2 hover:text-pink-600 transition-colors" aria-label="Previous month">‹</button>
           <span className="font-semibold text-gray-700 text-sm">{monthLabel}</span>
@@ -92,8 +93,8 @@ export function DatePickerStep({ onNext }: Props) {
                 onClick={() => setSelected(new Date(date))}
                 className={[
                   "text-sm rounded-full w-8 h-8 mx-auto flex items-center justify-center transition-colors",
-                  disabled ? "text-gray-200 cursor-not-allowed" : "hover:bg-pink-100 cursor-pointer text-gray-700",
-                  isSelected ? "!bg-pink-500 !text-white" : "",
+                  disabled ? "text-gray-300 cursor-not-allowed" : "hover:bg-pink-200 cursor-pointer text-gray-700",
+                  isSelected ? "!bg-pink-500 !text-white font-bold" : "",
                   isToday && !isSelected ? "ring-1 ring-pink-400 text-pink-500 font-semibold" : "",
                 ].filter(Boolean).join(" ")}
               >
@@ -105,13 +106,13 @@ export function DatePickerStep({ onNext }: Props) {
       </div>
 
       {selected && (
-        <p className="mt-3 text-xs text-pink-500 font-medium">{formatDateLong(selected)} ✓</p>
+        <p className="mt-3 text-xs" style={popSub}>{formatDateLong(selected)} ✓</p>
       )}
 
       <button
         disabled={!selected}
         onClick={() => selected && onNext(selected)}
-        className="mt-5 bg-pink-500 hover:bg-pink-600 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold py-3 px-10 rounded-full transition-colors"
+        className="mt-5 w-full bg-pink-500 hover:bg-pink-600 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold py-3 px-10 rounded-full shadow-md transition-all"
       >
         Next →
       </button>
